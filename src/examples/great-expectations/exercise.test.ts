@@ -53,7 +53,6 @@ describe('Kanban Board', () => {
 
   it('should remove a status using #removeStatus', () => {
     const board = new KanbanBoard('Things to Do');
-    console.log('board', board.statuses)
     // Use board.removeStatus to remove a status.
     board.removeStatus("Completed")
     // You can be clever or you can just assume "Backlog" is in board.statuses
