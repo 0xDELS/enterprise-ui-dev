@@ -22,7 +22,6 @@ jobs:
         name: Install modules from npm
       - run: npm test
         name: Run the tests
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -38,3 +37,23 @@ jobs:
         name: Install modules from npm
       - run: npm run build
         name: Run Build
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout Repository
+      - uses: actions/setup-node@v3
+        name: Setup Node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+        name: Install modules from npm
+      - run: npm test -- --coverage
+        name: Run the test coverage
+      - uses: actions/upload-artifact@v3
+        name: Archive coverage report
+        with:
+            name: coverage-report
+            path: coverage
